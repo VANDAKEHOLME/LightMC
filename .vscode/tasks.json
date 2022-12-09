@@ -7,11 +7,13 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${workspaceFolder}/*.cpp",
+                "${workspaceFolder}/Source/cpp/*.cpp",
                 "${workspaceFolder}/src/glad.c",
               
                 "-I",
                 "C:\\SDK\\include\\",
+                "-I",
+                "${workspaceFolder}/Source/headers/",
                 "-L",
                 "C:\\SDK\\Lib",                
                 "-L",
