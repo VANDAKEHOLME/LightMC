@@ -7,6 +7,8 @@
         "ICONWARNING",
         "LPCSTR",
         "MAINGAME",
+        "Programiv",
+        "Shaderiv",
         "windowhandler",
         "Wwindow"
     ],
@@ -55,6 +57,7 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "cinttypes": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "fstream": "cpp"
     }
 }

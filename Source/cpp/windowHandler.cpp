@@ -17,13 +17,12 @@ LightMC::WindowHandler::WindowHandler(int width, int height, const char *title)
         glfwTerminate();
     }
     glfwMakeContextCurrent(this->window);
+    glfwSetFramebufferSizeCallback(this->window, WindowSizeChangedCallback);
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
         LightMC::DebugTools::DebugOutput("Failed to load the GLAD", LightMC::DebugTools::MsgType::Normal);
         this->CloseWindow();
     }
-    glViewport(0, 0, width, height);
-    glfwSetFramebufferSizeCallback(this->window, WindowSizeChangedCallback);
 }
 /// @brief A callback function to changed the viewport with the change of window.
 /// @param window
@@ -44,9 +43,9 @@ void LightMC::WindowHandler::WindowLoop(void (*WindowLoopCallbackFunc)(void *), 
 {
     while (!glfwWindowShouldClose(this->window))
     {
+        WindowLoopCallbackFunc(p);
         glfwSwapBuffers(this->window);
         glfwPollEvents();
-        WindowLoopCallbackFunc(p);
     }
 }
 /// @brief To return the window pointer.

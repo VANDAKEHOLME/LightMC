@@ -10,6 +10,8 @@ namespace LightMC
         static void WindowLoopCallback(void*);
 
     public:
+        unsigned int VBO, VAO;
+        GLenum shaderProgram;
         void StartGame();
         void TerminateGame();
     };
