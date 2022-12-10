@@ -13,5 +13,6 @@ namespace LightMC
     public:
         std::vector<float> positions;
         Block(float _x, float _y, float _z, float _width, float _height, float _depth);
+        Block() = delete;
     };
 }
