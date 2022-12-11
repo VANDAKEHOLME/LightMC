@@ -7,6 +7,7 @@
 #include "DebugTools.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "glm/gtc/type_ptr.hpp"
 
 /// @brief To read the shader file.
 /// @param _fileLocation
@@ -30,31 +31,35 @@ std::string LightMC::Shader::ReadShaderStringFromFile(const char *_fileLocation)
 /// @brief To create a shader
 /// @param _fileLocation
 /// @param _shaderType
-LightMC::Shader::Shader(const char *_fileLocation, GLenum _shaderType, GLenum &_shaderProgram)
+LightMC::Shader::Shader(const char *_fileLocation, GLenum _shaderType, GLenum &shaderProgram)
 {
     this->shaderString = ReadShaderStringFromFile(_fileLocation);
     shaderId = CompileShader(_shaderType);
-    if (_shaderProgram == 0)
-        _shaderProgram = glCreateProgram();
-    glAttachShader(_shaderProgram, shaderId);
-    glLinkProgram(_shaderProgram);
+    if (shaderProgram == 0)
+    {
+        shaderProgram = glCreateProgram();
+    }
+    _shaderProgram = shaderProgram;
+    glAttachShader(shaderProgram, shaderId);
+    glLinkProgram(shaderProgram);
     int result;
     char infoLog[512];
-    glGetProgramiv(_shaderProgram, GL_LINK_STATUS, &result);
+    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &result);
     if (!result)
     {
-        glGetProgramInfoLog(_shaderProgram, 512, NULL, infoLog);        
+        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
         LightMC::DebugTools::DebugOutput(infoLog, LightMC::DebugTools::MsgType::Error);
     }
     glDeleteShader(shaderId);
-    glUseProgram(_shaderProgram);
+    if (shaderProgram != GL_VERTEX_SHADER)
+        glUseProgram(shaderProgram);
 }
 /// @brief To compile a shader
 /// @param _shaderType
 /// @return The shader's id
 GLenum LightMC::Shader::CompileShader(GLenum _shaderType)
 {
-    const char* shaderChar = shaderString.c_str();
+    const char *shaderChar = shaderString.c_str();
     unsigned int shader;
     shader = glCreateShader(_shaderType);
     glShaderSource(shader, 1, &shaderChar, NULL);
@@ -68,4 +73,41 @@ GLenum LightMC::Shader::CompileShader(GLenum _shaderType)
         LightMC::DebugTools::DebugOutput(infoLog, LightMC::DebugTools::MsgType::Error);
     }
     return shader;
+}
+/// @brief To enable a shader.
+void LightMC::Shader::EnableShader() const
+{
+    glUseProgram(_shaderProgram);
+}
+/// @brief To send a uniform float to vertex shader.
+/// @param _name
+/// @param _value
+void LightMC::Shader::SetFloatUniform(const std::string _name, float _value) const
+{
+    int location = glGetUniformLocation(this->_shaderProgram, _name.c_str());
+    glUniform1f(location, _value);
+}
+/// @brief To send a uniform boolean to vertex shader.
+/// @param _name
+/// @param _value
+void LightMC::Shader::SetBoolUniform(const std::string _name, bool _value) const
+{
+    int location = glGetUniformLocation(this->_shaderProgram, _name.c_str());
+    glUniform1i(location, _value);
+}
+/// @brief To send a uniform int to vertex shader.
+/// @param _name
+/// @param _value
+void LightMC::Shader::SetIntUniform(const std::string _name, int _value) const
+{
+    int location = glGetUniformLocation(this->_shaderProgram, _name.c_str());
+    glUniform1i(location, _value);
+}
+/// @brief To send a uniform 4x4 matrix to vertex shader.
+/// @param _name
+/// @param _value
+void LightMC::Shader::SetMat4Uniform(const std::string _name, glm::mat4 _value) const
+{
+    int location = glGetUniformLocation(this->_shaderProgram, _name.c_str());
+    glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(_value));
 }

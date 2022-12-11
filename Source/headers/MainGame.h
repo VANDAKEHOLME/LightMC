@@ -1,16 +1,18 @@
 #ifndef MAINGAME_H_
 #define MAINGAME_H_
 #include "windowHanlder.h"
+#include "Shader.h"
 namespace LightMC
 {
     class MainGame
     {
     private:
         WindowHandler *windowHandler;
-        static inline void WindowLoopCallback(void*);
-
+        static inline void WindowLoopCallback(void *);
     public:
-        GLenum shaderProgram;
+        Shader* vertexShader;
+        Shader* fragmentShader;
+        unsigned int shaderProgram = 0;
         void StartGame();
         void TerminateGame();
     };

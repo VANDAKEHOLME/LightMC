@@ -1,15 +1,22 @@
 {
     "cSpell.words": [
+        "awesomeface",
         "Dloadproc",
         "endregion",
         "Framebuffer",
+        "fullscreened",
         "glfw",
         "ICONWARNING",
         "LPCSTR",
         "MAINGAME",
+        "Mipmap",
+        "monitornum",
+        "Parameteri",
         "Programiv",
         "Shaderiv",
+        "stbi",
         "windowhandler",
+        "Wvidmode",
         "Wwindow"
     ],
     "files.associations": {
@@ -58,6 +65,28 @@
         "streambuf": "cpp",
         "cinttypes": "cpp",
         "typeinfo": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "cstring": "cpp",
+        "ctime": "cpp",
+        "ios": "cpp",
+        "sstream": "cpp",
+        "xfacet": "cpp",
+        "xiosbase": "cpp",
+        "xlocale": "cpp",
+        "xlocinfo": "cpp",
+        "xlocnum": "cpp",
+        "xmemory": "cpp",
+        "xstddef": "cpp",
+        "xstring": "cpp",
+        "xtr1common": "cpp",
+        "xutility": "cpp",
+        "iomanip": "cpp",
+        "list": "cpp",
+        "locale": "cpp",
+        "xhash": "cpp",
+        "xlocbuf": "cpp",
+        "xlocmes": "cpp",
+        "xlocmon": "cpp",
+        "xloctime": "cpp"
     }
 }

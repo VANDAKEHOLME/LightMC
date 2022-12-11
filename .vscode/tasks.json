@@ -2,6 +2,21 @@
     "tasks": [
         {
             "type": "cppbuild",
+            "label": "C/C++: cl.exe build active file",
+            "command": "cl.exe",
+            "args": [
+                "/Zi",
+                "/EHsc",
+                "/I${env:INCLUDE}",
+                "/IC:\\LightMC\\Include",
+                "/IC:\\LightMC\\Source\\headers",
+                "/Fe:",
+                "${workspaceFolder}/Source/cpp/*.cpp",
+                "${workspaceFolder}/src/glad.c",
+            ]
+        },
+        {
+            "type": "cppbuild",
             "label": "C/C++: g++.exe build active file",
             "command": "C:\\msys64\\mingw64\\bin\\g++.exe",
             "args": [
@@ -10,6 +25,8 @@
                 "${workspaceFolder}/Source/cpp/*.cpp",
                 "${workspaceFolder}/src/glad.c",
               
+                "-I",
+                "${workspaceFolder}/Include",
                 "-I",
                 "C:\\SDK\\include\\",
                 "-I",

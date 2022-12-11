@@ -4,18 +4,19 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/Include/**"
+                "${workspaceFolder}/Include/**",
+                "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\**"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE"
             ],
-            "compilerPath": "C:\\msys64\\mingw64\\bin\\gcc.exe",
-            "cStandard": "gnu17",
-            "cppStandard": "gnu++17",
-            "intelliSenseMode": "windows-gcc-x64",
-            "configurationProvider": "ms-vscode.cpptools"
+            "compilerPath": "cl.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "windowsSdkVersion": "10.0.22000.0",
+            "intelliSenseMode": "windows-msvc-x64"
         }
     ],
     "version": 4

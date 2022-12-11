@@ -9,11 +9,11 @@ namespace LightMC
     {
     private:
         GLFWwindow *window;
-        int width, height;
-        char *title;
         static void WindowSizeChangedCallback(GLFWwindow *, int, int);
+        char *title;
 
     public:
+        int width, height;
         WindowHandler(int, int, const char *);
         void CloseWindow();
         void WindowLoop(void (*)(void *), void *);
