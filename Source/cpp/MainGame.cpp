@@ -14,51 +14,50 @@ void LightMC::MainGame::StartGame()
 #pragma region Test
     camera = new LightMC::Camera(glm::vec3(0, 0, -3));
     glEnable(GL_DEPTH_TEST);
-    LightMC::Texture texture1("../../Resources/Image/container.jpg");
-    LightMC::Texture texture2("../../Resources/Image/awesomeface.png", {0, (10497), (10497), (9728), (9984), (GL_TEXTURE1)});
     Block block(-0.75f, -0.75f, -0.75f, 1.f, 1.f, 1.f);
+
     float vertices[] = {
-        -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
-        0.5f, -0.5f, -0.5f, 1.0f, 0.0f,
-        0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
-        0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
-        -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
+        -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f,
+        0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f,
+        0.5f, 0.5f, -0.5f, 0.0f, 0.0f, -1.0f,
+        0.5f, 0.5f, -0.5f, 0.0f, 0.0f, -1.0f,
+        -0.5f, 0.5f, -0.5f, 0.0f, 0.0f, -1.0f,
+        -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f,
 
-        -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-        0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
-        0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
-        0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
-        -0.5f, 0.5f, 0.5f, 0.0f, 1.0f,
-        -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+        -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
+        0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
+        0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
+        0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
+        -0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
+        -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
 
-        -0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
-        -0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-        -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-        -0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+        -0.5f, 0.5f, 0.5f, -1.0f, 0.0f, 0.0f,
+        -0.5f, 0.5f, -0.5f, -1.0f, 0.0f, 0.0f,
+        -0.5f, -0.5f, -0.5f, -1.0f, 0.0f, 0.0f,
+        -0.5f, -0.5f, -0.5f, -1.0f, 0.0f, 0.0f,
+        -0.5f, -0.5f, 0.5f, -1.0f, 0.0f, 0.0f,
+        -0.5f, 0.5f, 0.5f, -1.0f, 0.0f, 0.0f,
 
-        0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
-        0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
-        0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-        0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-        0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-        0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+        0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f,
+        0.5f, 0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
+        0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
+        0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
+        0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f,
+        0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f,
 
-        -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-        0.5f, -0.5f, -0.5f, 1.0f, 1.0f,
-        0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
-        0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
-        -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-        -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f, 0.0f, -1.0f, 0.0f,
+        0.5f, -0.5f, -0.5f, 0.0f, -1.0f, 0.0f,
+        0.5f, -0.5f, 0.5f, 0.0f, -1.0f, 0.0f,
+        0.5f, -0.5f, 0.5f, 0.0f, -1.0f, 0.0f,
+        -0.5f, -0.5f, 0.5f, 0.0f, -1.0f, 0.0f,
+        -0.5f, -0.5f, -0.5f, 0.0f, -1.0f, 0.0f,
 
-        -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
-        0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
-        0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
-        0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
-        -0.5f, 0.5f, 0.5f, 0.0f, 0.0f,
-        -0.5f, 0.5f, -0.5f, 0.0f, 1.0f};
+        -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+        0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+        0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f,
+        0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f,
+        -0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f,
+        -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f};
     unsigned int indices[] = {
         0, 1, 3, // first triangle
         1, 2, 3  // second triangle
@@ -66,7 +65,7 @@ void LightMC::MainGame::StartGame()
 
     vertexShaderForObj = new Shader("..\\shaders\\vertexForObj.vert", GL_VERTEX_SHADER, shaderProgram);
     fragmentShaderForObj = new Shader("..\\shaders\\fragmentForObj.frag", GL_FRAGMENT_SHADER, shaderProgram);
-    vertexShaderForLight = new Shader("..\\shaders\\vertexForLight.frag", GL_VERTEX_SHADER, shaderProgram);
+    vertexShaderForLight = new Shader("..\\shaders\\vertexForLight.vert", GL_VERTEX_SHADER, shaderProgram);
     fragmentShaderForLight = new Shader("..\\shaders\\fragmentForLight.frag", GL_FRAGMENT_SHADER, shaderProgram);
 
     glGenVertexArrays(1, &targetVAO);
@@ -78,12 +77,12 @@ void LightMC::MainGame::StartGame()
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STREAM_DRAW);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STREAM_DRAW);
-    glVertexAttribPointer(12, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)0);
+    glVertexAttribPointer(12, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(12);
-    glVertexAttribPointer(2, 2, GL_FLOAT, false, 5 * sizeof(float), (void *)(3 * sizeof(float)));
+    glVertexAttribPointer(2, 3, GL_FLOAT, false, 6 * sizeof(float), (void *)(3 * sizeof(float)));
     glEnableVertexAttribArray(2);
     glBindVertexArray(lightVAO);
-    glVertexAttribPointer(11, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)0);
+    glVertexAttribPointer(11, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(11);
     glBindVertexArray(0);
     // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -145,30 +144,27 @@ void LightMC::MainGame::WindowLoopCallback(void *p)
     // DebugTools::DebugOutput(std::to_string(LightMC::WindowHandler::xOffset), DebugTools::Normal);
 
 #pragma region Render
+    glm::vec3 lightPos = glm::vec3(2 * std::sin(glfwGetTime()), 2 * std::cos(glfwGetTime()), 2 * std::sin(glfwGetTime() * 2));
     glm::mat4 trans = glm::mat4(1.0f);
-    // trans = glm::translate(trans, glm::vec3(1.f, 1.f, 1.0f));
-    // trans = glm::rotate(trans, (float)glfwGetTime(), glm::vec3(.5f, 0.3f, 1.0f));
-    // trans = glm::scale(trans, glm::vec3(0.5, 0.5, 0.5));
     glm::mat4 projection = glm::mat4(1.f);
     projection = glm::perspective(glm::radians(LightMC::MainGame::FOV), (float)(maingame->windowHandler->width / maingame->windowHandler->height), 0.1f, 100.f);
-    glClearColor(.2f, .3f, .3f, 1.f);
+    glClearColor(.1f, .1f, .1f, 1.f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    // maingame->camera->RotateCamera(LightMC::WindowHandler::xOffset, LightMC::WindowHandler::yOffset);
     maingame->vertexShaderForObj->EnableShader();
     maingame->fragmentShaderForObj->EnableShader();
+    maingame->vertexShaderForObj->SetVec3Uniform("cameraPos", camera->GetCameraPosition());
     maingame->vertexShaderForObj->SetVec3Uniform("objectColor", glm::vec3(1.0f, 0.5f, 0.31f));
     maingame->vertexShaderForObj->SetVec3Uniform("lightColor", glm::vec3(1.0f, 1.f, 1.f));
-    maingame->vertexShaderForObj->SetIntUniform("Texture", 0);
-    maingame->vertexShaderForObj->SetIntUniform("Face", 1);
     maingame->vertexShaderForObj->SetMat4Uniform("transform", trans);
     maingame->vertexShaderForObj->SetMat4Uniform("projection", projection);
+    maingame->vertexShaderForObj->SetVec3Uniform("u_lightPos", lightPos);
     mat4 view = maingame->camera->GetViewMatrix();
     maingame->vertexShaderForObj->SetMat4Uniform("view", view);
     glBindVertexArray(maingame->targetVAO);
     glDrawArrays(GL_TRIANGLES, 0, 36);
     maingame->vertexShaderForLight->EnableShader();
     maingame->fragmentShaderForLight->EnableShader();
-    trans = glm::translate(trans, glm::vec3(1.2f, 1.0f, 2.0f));
+    trans = glm::translate(trans, lightPos);
     maingame->vertexShaderForLight->SetMat4Uniform("transform", trans);
     maingame->vertexShaderForLight->SetMat4Uniform("projection", projection);
     maingame->vertexShaderForLight->SetMat4Uniform("view", view);

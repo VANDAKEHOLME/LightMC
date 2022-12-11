@@ -30,7 +30,8 @@ namespace LightMC
         mat4 GetViewMatrix() const;
         void MoveCamera(MoveType,float);
         void RotateCamera(float, float);
-        void VerticalMove(MoveType);
+        vec3 GetForward();
+        vec3 GetCameraPosition();
     };
 } // namespace LightMC
 #endif

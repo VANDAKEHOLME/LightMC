@@ -66,3 +66,16 @@ void LightMC::Camera::RotateCamera(float _xOffset, float _yOffset)
     right = normalize(cross(vec3(0.f, 1.f, 0.f), front));
     up = normalize(cross(front, right));
 }
+
+/// @brief To get the forward vector of this camera.
+/// @return forward vector.
+glm::vec3 LightMC::Camera::GetForward()
+{
+    return front;
+}
+/// @brief To get the position vector of this camera.
+/// @return forward vector.
+glm::vec3 LightMC::Camera::GetCameraPosition()
+{
+    return position;
+}
