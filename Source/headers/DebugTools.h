@@ -20,5 +20,4 @@ namespace LightMC
         static void DebugToolsInitialize();
     };
 }
-
 #endif

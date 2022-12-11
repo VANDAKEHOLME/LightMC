@@ -66,6 +66,9 @@ void LightMC::MainGame::StartGame()
 
     vertexShaderForObj = new Shader("..\\shaders\\vertexForObj.vert", GL_VERTEX_SHADER, shaderProgram);
     fragmentShaderForObj = new Shader("..\\shaders\\fragmentForObj.frag", GL_FRAGMENT_SHADER, shaderProgram);
+    vertexShaderForLight = new Shader("..\\shaders\\vertexForLight.frag", GL_VERTEX_SHADER, shaderProgram);
+    fragmentShaderForLight = new Shader("..\\shaders\\fragmentForLight.frag", GL_FRAGMENT_SHADER, shaderProgram);
+
     glGenVertexArrays(1, &targetVAO);
     glGenVertexArrays(1, &lightVAO);
     glGenBuffers(1, &VBO);
@@ -163,8 +166,13 @@ void LightMC::MainGame::WindowLoopCallback(void *p)
     maingame->vertexShaderForObj->SetMat4Uniform("view", view);
     glBindVertexArray(maingame->targetVAO);
     glDrawArrays(GL_TRIANGLES, 0, 36);
-    trans = glm::translate(trans, glm::vec3(1.5f, 0.2f, -1.5f));
-    maingame->vertexShaderForObj->SetMat4Uniform("transform", trans);
+    maingame->vertexShaderForLight->EnableShader();
+    maingame->fragmentShaderForLight->EnableShader();
+    trans = glm::translate(trans, glm::vec3(1.2f, 1.0f, 2.0f));
+    maingame->vertexShaderForLight->SetMat4Uniform("transform", trans);
+    maingame->vertexShaderForLight->SetMat4Uniform("projection", projection);
+    maingame->vertexShaderForLight->SetMat4Uniform("view", view);
+
     glBindVertexArray(maingame->lightVAO);
     glDrawArrays(GL_TRIANGLES, 0, 36);
     // glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

@@ -4,10 +4,10 @@
 #include <sstream>
 #include <string>
 #include <direct.h>
-#include "DebugTools.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "glm/gtc/type_ptr.hpp"
+#include "DebugTools.h"
 
 /// @brief To read the shader file.
 /// @param _fileLocation
@@ -18,7 +18,8 @@ std::string LightMC::Shader::ReadShaderStringFromFile(const char *_fileLocation)
     ifs.open(_fileLocation, std::ios::in);
     if (!ifs.is_open())
     {
-        LightMC::DebugTools::DebugOutput("Failed to load shader files", LightMC::DebugTools::MsgType::Error);
+        LightMC::DebugTools::DebugOutput("Failed to load shader files at", LightMC::DebugTools::MsgType::Error);
+        LightMC::DebugTools::DebugOutput(_fileLocation, LightMC::DebugTools::MsgType::Error);
         return nullptr;
     }
     std::stringstream strstream;
@@ -31,15 +32,13 @@ std::string LightMC::Shader::ReadShaderStringFromFile(const char *_fileLocation)
 /// @brief To create a shader
 /// @param _fileLocation
 /// @param _shaderType
-LightMC::Shader::Shader(const char *_fileLocation, GLenum _shaderType, GLenum &shaderProgram)
+LightMC::Shader::Shader(const char *_fileLocation, GLenum _shaderType, std::vector<unsigned int> &programId)
 {
     this->shaderString = ReadShaderStringFromFile(_fileLocation);
     shaderId = CompileShader(_shaderType);
-    if (shaderProgram == 0)
-    {
-        shaderProgram = glCreateProgram();
-    }
-    _shaderProgram = shaderProgram;
+    if (_shaderType == GL_VERTEX_SHADER)
+        programId.push_back(glCreateProgram());
+    shaderProgram = programId[programId.size() - 1];
     glAttachShader(shaderProgram, shaderId);
     glLinkProgram(shaderProgram);
     int result;
@@ -77,14 +76,14 @@ GLenum LightMC::Shader::CompileShader(GLenum _shaderType)
 /// @brief To enable a shader.
 void LightMC::Shader::EnableShader() const
 {
-    glUseProgram(_shaderProgram);
+    glUseProgram(shaderProgram);
 }
 /// @brief To send a uniform float to vertex shader.
 /// @param _name
 /// @param _value
 void LightMC::Shader::SetFloatUniform(const std::string _name, float _value) const
 {
-    int location = glGetUniformLocation(this->_shaderProgram, _name.c_str());
+    int location = glGetUniformLocation(this->shaderProgram, _name.c_str());
     glUniform1f(location, _value);
 }
 /// @brief To send a uniform boolean to shader.
@@ -92,7 +91,7 @@ void LightMC::Shader::SetFloatUniform(const std::string _name, float _value) con
 /// @param _value
 void LightMC::Shader::SetBoolUniform(const std::string _name, bool _value) const
 {
-    int location = glGetUniformLocation(this->_shaderProgram, _name.c_str());
+    int location = glGetUniformLocation(this->shaderProgram, _name.c_str());
     glUniform1i(location, _value);
 }
 /// @brief To send a uniform int to shader.
@@ -100,7 +99,7 @@ void LightMC::Shader::SetBoolUniform(const std::string _name, bool _value) const
 /// @param _value
 void LightMC::Shader::SetIntUniform(const std::string _name, int _value) const
 {
-    int location = glGetUniformLocation(this->_shaderProgram, _name.c_str());
+    int location = glGetUniformLocation(this->shaderProgram, _name.c_str());
     glUniform1i(location, _value);
 }
 /// @brief To send a uniform 4x4 matrix to shader.
@@ -108,7 +107,7 @@ void LightMC::Shader::SetIntUniform(const std::string _name, int _value) const
 /// @param _value
 void LightMC::Shader::SetMat4Uniform(const std::string _name, glm::mat4 _value) const
 {
-    int location = glGetUniformLocation(this->_shaderProgram, _name.c_str());
+    int location = glGetUniformLocation(this->shaderProgram, _name.c_str());
     glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(_value));
 }
 /// @brief To send a uniform vector with 3 parameters to shader.
@@ -116,6 +115,6 @@ void LightMC::Shader::SetMat4Uniform(const std::string _name, glm::mat4 _value) 
 /// @param _value
 void LightMC::Shader::SetVec3Uniform(const std::string _name, glm::vec3 _value) const
 {
-    int location = glGetUniformLocation(this->_shaderProgram, _name.c_str());
+    int location = glGetUniformLocation(this->shaderProgram, _name.c_str());
     glUniform3fv(location, 1, glm::value_ptr(_value));
 }

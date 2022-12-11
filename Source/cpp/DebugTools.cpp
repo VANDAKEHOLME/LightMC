@@ -12,6 +12,7 @@ void LightMC::DebugTools::DebugOutput(const char *text, MsgType messageType)
     case MsgType::Error:
         SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
         std::cout << text << std::endl;
+        system("pause");
         break;
     case MsgType::Normal:
         SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY);
@@ -32,6 +33,7 @@ void LightMC::DebugTools::DebugOutput(unsigned char *text, MsgType messageType)
     case MsgType::Error:
         SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
         std::cout << text << std::endl;
+        system("pause");
         break;
     case MsgType::Normal:
         SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY);
@@ -57,6 +59,7 @@ void LightMC::DebugTools::DebugOutput(std::string text, MsgType messageType)
     case MsgType::Error:
         SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
         std::cout << text << std::endl;
+        system("pause");
         break;
     case MsgType::Normal:
         SetConsoleTextAttribute(hConsole, FOREGROUND_INTENSITY);

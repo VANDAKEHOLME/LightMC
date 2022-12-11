@@ -3,6 +3,7 @@
 #include "windowHanlder.h"
 #include "Camera.h"
 #include "Shader.h"
+
 namespace LightMC
 {
     class MainGame
@@ -20,7 +21,9 @@ namespace LightMC
 
         Shader *vertexShaderForObj;
         Shader *fragmentShaderForObj;
-        unsigned int shaderProgram = 0;
+        Shader *vertexShaderForLight;
+        Shader *fragmentShaderForLight;
+        std::vector<unsigned int> shaderProgram = std::vector<unsigned int>();
         void StartGame();
         void TerminateGame();
     };
