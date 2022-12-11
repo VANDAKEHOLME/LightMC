@@ -17,7 +17,7 @@ namespace LightMC
             unsigned int textureMinFilter;
             unsigned int textureUnitIndex;
         };
-        Texture(const char *, TextureStyle = {0, GL_REPEAT, GL_REPEAT, GL_NEAREST, GL_LINEAR_MIPMAP_NEAREST, GL_TEXTURE0});
+        Texture(const char *, TextureStyle = {0, GL_REPEAT, GL_REPEAT, GL_NEAREST, GL_NEAREST_MIPMAP_NEAREST, GL_TEXTURE0});
     };
 }
 #endif

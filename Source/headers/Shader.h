@@ -19,5 +19,6 @@ namespace LightMC
         void SetBoolUniform(const std::string _name, bool _value) const;
         void SetIntUniform(const std::string _name, int _value) const;
         void SetMat4Uniform(const std::string _name, glm::mat4) const;
+        void SetVec3Uniform(const std::string _name, glm::vec3) const;
     };
 } // namespace LightMC

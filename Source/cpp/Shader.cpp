@@ -87,7 +87,7 @@ void LightMC::Shader::SetFloatUniform(const std::string _name, float _value) con
     int location = glGetUniformLocation(this->_shaderProgram, _name.c_str());
     glUniform1f(location, _value);
 }
-/// @brief To send a uniform boolean to vertex shader.
+/// @brief To send a uniform boolean to shader.
 /// @param _name
 /// @param _value
 void LightMC::Shader::SetBoolUniform(const std::string _name, bool _value) const
@@ -95,7 +95,7 @@ void LightMC::Shader::SetBoolUniform(const std::string _name, bool _value) const
     int location = glGetUniformLocation(this->_shaderProgram, _name.c_str());
     glUniform1i(location, _value);
 }
-/// @brief To send a uniform int to vertex shader.
+/// @brief To send a uniform int to shader.
 /// @param _name
 /// @param _value
 void LightMC::Shader::SetIntUniform(const std::string _name, int _value) const
@@ -103,11 +103,19 @@ void LightMC::Shader::SetIntUniform(const std::string _name, int _value) const
     int location = glGetUniformLocation(this->_shaderProgram, _name.c_str());
     glUniform1i(location, _value);
 }
-/// @brief To send a uniform 4x4 matrix to vertex shader.
+/// @brief To send a uniform 4x4 matrix to shader.
 /// @param _name
 /// @param _value
 void LightMC::Shader::SetMat4Uniform(const std::string _name, glm::mat4 _value) const
 {
     int location = glGetUniformLocation(this->_shaderProgram, _name.c_str());
     glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(_value));
+}
+/// @brief To send a uniform vector with 3 parameters to shader.
+/// @param _name
+/// @param _value
+void LightMC::Shader::SetVec3Uniform(const std::string _name, glm::vec3 _value) const
+{
+    int location = glGetUniformLocation(this->_shaderProgram, _name.c_str());
+    glUniform3fv(location, 1, glm::value_ptr(_value));
 }

@@ -10,14 +10,20 @@ namespace LightMC
     private:
         GLFWwindow *window;
         static void WindowSizeChangedCallback(GLFWwindow *, int, int);
+        static void CursorPosCallback(GLFWwindow *, double, double);
+        static void ScrollCallback(GLFWwindow *, double, double);
         char *title;
 
     public:
+        static float sensitivity;
+        typedef void (*MouseMoveEvent)(int, int);
+        static bool firstRotate;
+        static int lastX, lastY;
         int width, height;
-        WindowHandler(int, int, const char *);
+        WindowHandler(int, int, const char *, float = 0.05f);
         void CloseWindow();
         void WindowLoop(void (*)(void *), void *);
-        GLFWwindow* GetWindow();
+        GLFWwindow *GetWindow();
     };
 }
 #endif
